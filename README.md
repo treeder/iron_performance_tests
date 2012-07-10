@@ -1,6 +1,5 @@
-These are very simple examples of using [Iron.io](http://www.iron.io) services. You can review
-the code to get a feel for how it works. To dig deeper and see more complicated examples, check out
-our examples repository at: https://github.com/iron-io/iron_worker_examples.
+These are very workers that test performance of [Iron.io](http://www.iron.io) services. This will
+give you an accurate representation of performance since it's all within AWS.
 
 # Running these examples.
 
@@ -12,20 +11,10 @@ information on setting up your credentials.
 
 * Upload the worker:
 
-    iron_worker upload hello
+    iron_worker upload cache_worker
 
 * Queue up a bunch of tasks:
 
-    ruby queue_hello.rb
+    ruby queue_cache_worker.rb
 
 Login to the Iron.io HUD at http://hud.iron.io to the running tasks.
-
-## Run IronMQ example
-
-    ruby mq.rb
-
-## Run IronCache example
-
-    ruby cache.rb
-
-
