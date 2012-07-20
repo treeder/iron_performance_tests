@@ -1,0 +1,11 @@
+# define the runtime language, this can be ruby, java, node, php, go, etc.
+runtime "ruby"
+# exec is the file that will be executed:
+exec "mq_worker.rb"
+
+gem 'iron_mq'
+gem 'iron_cache'
+gem 'redis'
+gem 'net-http-persistent'
+gem 'quicky'
+

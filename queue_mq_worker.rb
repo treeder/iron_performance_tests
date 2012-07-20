@@ -14,5 +14,5 @@ redis.set("test", "value")
 
 client = IronWorkerNG::Client.new
 1.times do
-  client.tasks.create("cache", "options" => client.api.options, "redis_options"=>config[:redistogo])
+  client.tasks.create("mq", "options" => client.api.options, "redis_options"=>config[:redistogo])
 end

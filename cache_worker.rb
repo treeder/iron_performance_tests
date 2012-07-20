@@ -2,16 +2,16 @@ require 'iron_cache'
 require 'redis'
 require 'memcache'
 require 'quicky'
+require 'uber_config'
 
 puts "Payload: #{params}"
 
 options = params['options']
 puts 'options: ' + options.inspect
 
-
 times = 100
 
-quicky = Quicky::Timer.new(:verbose=>true)
+quicky = Quicky::Timer.new()
 
 @ic = IronCache::Client.new(:token=>options['token'], :project_id=>options['project_id'])
 cache = @ic.cache("my_cache")
@@ -23,7 +23,9 @@ quicky.loop("iron_http GET", times, :warmup=>3) do |i|
 end
 
 puts "REDIS"
-roptions = params['redis_options'].inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+roptions = params['redis_options']
+p roptions
+roptions = UberConfig.symbolize_keys(roptions)
 p roptions
 redis = Redis.new(roptions)
 quicky.loop("redistogo SET", times, :warmup=>3) do |i|
