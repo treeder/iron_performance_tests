@@ -46,5 +46,5 @@ quicky.loop("iron_memcached GET", times, :warmup=>3) do |i|
 end
 
 quicky.results.each_pair do |k, v|
-  puts "#{k}: #{v.duration}"
+  puts "#{k}: Count: #{v.count} Total: #{v.total_duration} Avg: #{v.duration}"
 end
