@@ -8,4 +8,5 @@ gem 'iron_cache'
 gem 'redis'
 gem 'net-http-persistent'
 gem 'quicky'
+gem 'aws-sdk'
 

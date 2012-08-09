@@ -10,4 +10,5 @@ group "testing" do
   gem "memcache-client"
   gem "redis"
   gem "quicky"
+  gem "aws-sdk"
 end
