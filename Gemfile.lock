@@ -26,7 +26,7 @@ GEM
     multi_xml (0.5.1)
     net-http-persistent (2.7)
     nokogiri (1.5.5)
-    quicky (0.0.3)
+    quicky (0.1.0)
     redis (3.0.1)
     rest (2.0.2)
       net-http-persistent

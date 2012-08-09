@@ -8,7 +8,7 @@ puts "Payload: #{params}"
 options = params['options']
 config = params[:config]
 
-times = 500
+times = 1000
 
 quicky = Quicky::Timer.new()
 
@@ -21,7 +21,7 @@ quicky.loop("iron_http GET", times, :warmup => 3) do |i|
   m = queue.get()
 end
 
-# todo: user redis as queue
+# todo: use redis as queue
 #puts "REDIS"
 #roptions = params['redis_options'].inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 #p roptions
@@ -55,11 +55,10 @@ quicky.loop("sqs PUT", times, :warmup => 3) do |i|
   queue.send_message("hello world!")
 end
 quicky.loop("sqs GET", times, :warmup => 3) do |i|
-  queue.poll(:idle_timeout => 0) do |msg|
-    puts "Got message: #{msg.body}"
-  end
+  msg = queue.receive_message()
+  puts "Got message: #{msg.body}"
 end
 
 quicky.results.each_pair do |k, v|
-  puts "#{k}: Count: #{v.count} Total: #{v.total_duration} Avg: #{v.duration}"
+  puts "#{k}: Count: #{v.count} Total: #{v.total_duration} Avg: #{v.duration} Max: #{v.max_duration} Min: #{v.min_duration}"
 end
